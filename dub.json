@@ -1,0 +1,12 @@
+{
+	"description": "A simple gui d application.",
+	"license": "proprietary",
+	"authors": [
+		"iasonas"
+	],
+	"copyright": "Copyright © 2026, iasonas",
+	"name": "gui_d_app",
+	"dependencies": {
+    	"dlangui": "~master"
+	}
+}
