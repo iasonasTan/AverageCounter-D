@@ -54,10 +54,17 @@ final class UIManager {
 	    	try {
 		    	computer.put(inputWidget.text.to!int);
 		    	string avgStr = computer.calculate().to!string;
-		    	outputWidget.text = UIString.fromRaw(avgStr);
-		    	outputWidget.textColor = Color.black;
+		    	Response res = computer.calculate();
+			Response.Ok ok = cast(Response.Ok) res;
+			if(ok !is null) {
+				outputWidget.text      = UIString.fromRaw("Average: "~ok.value.to!string);
+				outputWidget.textColor = Color.black;
+			} else {
+				outputWidget.textColor = Color.red;
+				outputWidget.text      = UIString("No values!");
+			}
 	    	} catch(Exception ignored) {
-	    		outputWidget.text = UIString.fromRaw("Error!");
+	    		outputWidget.text      = UIString.fromRaw("Error!");
 	    		outputWidget.textColor = Color.red;
 	    	}
 	    	return true;
@@ -73,9 +80,22 @@ final class UIManager {
 	}
 }
 
+interface Response {
+	static final class Ok : Response {
+		public const int value;
+
+		this(int v) {
+			value = v;
+		}
+	}
+
+	static final class Err : Response {
+	}
+}
+
 interface Computer {
 	void put(int v);
-	int calculate();
+	Response calculate();
 }
 
 final class AverageComputer : Computer {
@@ -87,11 +107,11 @@ final class AverageComputer : Computer {
 		sum     += v;
 	}
 
-	override public int calculate() {
+	override public Response calculate() {
 		if(counter == 0){
-			return 0;
+			return new Response.Err();
 		}
-		return sum/counter;
+		return new Response.Ok(sum/counter);
 	}
 }
 

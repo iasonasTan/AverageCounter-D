@@ -1,11 +1,11 @@
 {
-	"description": "A simple gui d application.",
+	"description": "A simple gui d application that calculates average value.",
 	"license": "proprietary",
 	"authors": [
 		"iasonas"
 	],
 	"copyright": "Copyright © 2026, iasonas",
-	"name": "gui_d_app",
+	"name": "AverageCalculator",
 	"dependencies": {
     	"dlangui": "~master"
 	}
