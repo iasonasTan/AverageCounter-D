@@ -25,7 +25,7 @@ final class UIManager {
 	private Computer computer;
 
 	this() {
-		window = Platform.instance.createWindow(UIString.fromRaw("Average Value Calculator."),null);
+		window = Platform.instance.createWindow(UIString.fromRaw("Average Value Calculator."),null, WindowFlag.Modal);
 		VerticalLayout layout = new VerticalLayout();
 	    layout.margins = 20;
 
