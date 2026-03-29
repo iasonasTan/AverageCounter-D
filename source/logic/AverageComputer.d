@@ -19,7 +19,7 @@ final class AverageComputer : Computer {
 
 	override public Response calculate() {
 		if(counter == 0){
-			return new Response.Err();
+			return new Response.Err("No values added.");
 		}
 		return new Response.Ok(sum/counter);
 	}

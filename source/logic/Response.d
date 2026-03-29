@@ -10,5 +10,10 @@ interface Response {
 	}
 
 	static final class Err : Response {
+		public const string msg;
+
+		this(string msg) {
+			this.msg = msg;
+		}
 	}
 }

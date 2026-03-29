@@ -53,8 +53,8 @@ final class UIManager {
                 inputWidget.text = UIString.fromRaw("");
 		    	Response res = computer.calculate();
 				handleResponse(res);
-	    	} catch(Exception ignored) {
-	    		outputWidget.text      = UIString.fromRaw("Error!");
+	    	} catch(Exception e) {
+	    		outputWidget.text      = UIString.fromRaw("That's not a number!");
 	    		outputWidget.textColor = Color.red;
 	    	}
 	    	return true;
@@ -73,9 +73,11 @@ final class UIManager {
         if(ok !is null) {
             outputWidget.text      = UIString.fromRaw("Average: "~ok.value.to!string);
             outputWidget.textColor = Color.black;
-        } else {
+        }
+		Response.Err err = cast(Response.Err) res;
+		if(err !is null) {
             outputWidget.textColor = Color.red;
-            outputWidget.text      = UIString.fromRaw("No values!");
+            outputWidget.text      = UIString.fromRaw(err.msg);
         }
     }
 
