@@ -5,4 +5,5 @@ import logic.Response;
 interface Computer {
 	void put(int v);
 	Response calculate();
+	void clear();
 }

@@ -12,6 +12,11 @@ final class AverageComputer : Computer {
 		sum     += v;
 	}
 
+	override public void clear() {
+		counter = 0;
+		sum     = 0;
+	}
+
 	override public Response calculate() {
 		if(counter == 0){
 			return new Response.Err();
